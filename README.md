@@ -168,5 +168,5 @@ JOIN Seats S ON AD.aircraft_code = S.aircraft_code
 GROUP BY AD.model 
 ORDER BY available_seats DESC ;
 ```
-![alt text](
+![alt text]()
 
