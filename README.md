@@ -158,6 +158,7 @@ SET actual_arrival = STR_TO_DATE(actual_arrival, '%Y-%m-%d %H:%i:%s+03');
 update bookings
 set book_date = str_to_date(book_date, '%Y-%m-%d %H:%i:%s+03');
 ```
+## SQL for Data Insights
 
 
 
