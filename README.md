@@ -1,4 +1,4 @@
-# SkyAnalytics: Unveiling Insights from Aviation Data
+# Aviation Analytics: Exploring Relationships Between Aircraft, Flights, and Passenger Data
 #Project Description: Data Analysis of Airline Operations
 ##Objective
 The primary objective of this project is to analyze various aspects of airline operations using the provided relational database. This analysis aims to uncover insights regarding aircraft performance, flight schedules, passenger bookings, and revenue generation.
