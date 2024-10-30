@@ -160,7 +160,13 @@ set book_date = str_to_date(book_date, '%Y-%m-%d %H:%i:%s+03');
 ```
 ## SQL for Data Insights
 
-
-
-
+1) Number of seats available per aircraft model
+```
+SELECT AD.model, COUNT(S.seat_no) AS available_seats 
+FROM Aircrafts_data AD 
+JOIN Seats S ON AD.aircraft_code = S.aircraft_code 
+GROUP BY AD.model 
+ORDER BY available_seats DESC ;
+```
+![alt text](
 
