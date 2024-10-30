@@ -59,3 +59,5 @@ The database consists of eight interconnected tables, each holding vital informa
 
 - In addition, Power BI was employed as a powerful business analytics tool to visualize and analyze the data. With Power BI, data from the relational database can be transformed into interactive reports and dashboards, allowing for real-time insights into various metrics related to flights, bookings, and aircraft.
 - This combination of SQL for data management and Power BI for visualization provides a robust framework for effective data analysis and decision-making.
+
+
