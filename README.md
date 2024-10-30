@@ -28,7 +28,7 @@ The database consists of eight interconnected tables, each holding vital informa
 8) Tickets: Contains information about each ticket, linking ticket numbers to booking references and passenger IDs.
 
 
-![Alt text](https://github.com/Slndora/Aviation-Analytics/blob/main/Screenshot%202024-10-28%20122218.png)
+![Alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-28%20122218.png)
 
 ## Analysis Goals
 1) Flight Performance Analysis:
