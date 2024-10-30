@@ -168,5 +168,225 @@ JOIN Seats S ON AD.aircraft_code = S.aircraft_code
 GROUP BY AD.model 
 ORDER BY available_seats DESC ;
 ```
-![alt text]()
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-26%20225959.png)
+
+2) List of the top 10 flights ranked by total tickets sold.
+```
+SELECT F.flight_id, COUNT(T.ticket_no) AS total_tickets 
+FROM Flights F 
+JOIN Ticket_flights TF ON F.flight_id = TF.flight_id 
+JOIN Tickets T ON TF.ticket_no = T.ticket_no 
+GROUP BY F.flight_id
+order by total_tickets desc
+limit 10 ;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-26%20230828.png)
+
+3) List of top 20 flights ranked by income generated.
+```
+SELECT F.flight_id, F.flight_no, SUM(TF.amount) AS total_income 
+FROM Flights F 
+JOIN Ticket_flights TF ON F.flight_id = TF.flight_id 
+JOIN Tickets T ON TF.ticket_no = T.ticket_no 
+JOIN Bookings B ON T.book_ref = B.book_ref 
+GROUP BY F.flight_id, F.flight_no
+ORDER BY total_income DESC
+limit 20;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-26%20231238.png)
+
+4)  Analyze booking trends by month and calculate the average ticket price for each month across all bookings.
+```
+SELECT DATE_FORMAT(b.book_date, '%Y-%m') AS booking_month, 
+       COUNT(t.Ticket_no) AS total_tickets, 
+       AVG(tf.amount) AS avg_ticket_price 
+FROM Bookings b 
+JOIN Tickets t ON b.Book_ref = t.book_ref 
+JOIN Ticket_flights tf ON t.Ticket_no = tf.Ticket_no 
+GROUP BY booking_month 
+ORDER BY booking_month;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20103915.png)
+
+5) Generate a report of passengers ranked by the total amounts spent and the number of flights taken.
+```
+SELECT t.passenger_id, 
+       COUNT(DISTINCT tf.flight_id) AS flights_taken, 
+       SUM(tf.amount) AS total_spent 
+FROM Tickets t 
+JOIN Ticket_flights tf ON t.Ticket_no = tf.Ticket_no 
+GROUP BY t.passenger_id 
+ORDER BY total_spent DESC;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20104418.png)
+
+6) Identify the most popular routes based on the number of flights and total tickets sold for each route.
+```
+SELECT f.departure_airport, f.arrival_airport, 
+       COUNT(f.Flight_id) AS total_flights, 
+       SUM(CASE WHEN bp.boarding_no IS NOT NULL THEN 1 ELSE 0 END) AS total_tickets 
+FROM Flights f 
+LEFT JOIN Boarding_passes bp ON f.Flight_id = bp.flight_id 
+GROUP BY f.departure_airport, f.arrival_airport 
+ORDER BY total_tickets DESC;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20104447.png)
+
+7) Analyze the relationship between aircraft range and ticket sales to see if longer-range flights yield more sales.
+```
+SELECT ad.range, COUNT(tf.Ticket_no) AS total_sales, AVG(tf.amount) AS avg_ticket_price 
+FROM Aircrafts_data ad 
+JOIN Flights f ON ad.aircraft_code = f.aircraft_code 
+JOIN Ticket_flights tf ON f.Flight_id = tf.flight_id 
+GROUP BY ad.range 
+ORDER BY ad.range;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20104530.png)
+
+8) Assess the impact of booking date on ticket sales, comparing early versus last-minute bookings.
+```
+SELECT CASE 
+           WHEN DATEDIFF(f.scheduled_departure, b.book_date) > 30 THEN 'Early' 
+           ELSE 'Last Minute' 
+       END AS booking_type, 
+       COUNT(t.Ticket_no) AS total_tickets, 
+       AVG(tf.amount) AS avg_amount 
+FROM Bookings b 
+JOIN Tickets t ON b.Book_ref = t.book_ref 
+JOIN Ticket_flights tf ON t.Ticket_no = tf.Ticket_no 
+JOIN Flights f ON tf.flight_id = f.Flight_id 
+GROUP BY booking_type;
+```
+![alt texxt](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20105149.png)
+
+9) Investigate flight delays by correlating scheduled and actual departure times, along with the number of affected passengers.
+```
+SELECT f.flight_no, 
+       COUNT(bp.boarding_no) AS affected_passengers, 
+       AVG(TIMESTAMPDIFF(MINUTE, f.scheduled_departure, f.actual_departure)) AS avg_delay 
+FROM Flights f 
+LEFT JOIN Boarding_passes bp ON f.Flight_id = bp.flight_id 
+WHERE f.actual_departure IS NOT NULL AND f.scheduled_departure < f.actual_departure 
+GROUP BY f.flight_no 
+ORDER BY affected_passengers DESC;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20105827.png)
+
+10) Generate a comprehensive report analyzing the performance of each airport based on bookings, flights, ranked by revenue.
+```
+SELECT a.airport_name, 
+       COUNT(DISTINCT f.flight_id) AS total_flights, 
+       COUNT(b.book_ref) AS total_bookings,
+       SUM(b.total_amount) AS total_revenue
+FROM Airports_data a
+LEFT JOIN Flights f ON a.airport_code = f.departure_airport
+LEFT JOIN Ticket_flights tf ON f.flight_id = tf.flight_id
+LEFT JOIN Tickets t ON tf.ticket_no = t.ticket_no
+LEFT JOIN Bookings b ON t.book_ref = b.book_ref
+GROUP BY a.airport_name
+ORDER BY total_revenue DESC;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20110237.png)
+
+11) Investigate the correlation between booking amounts and flight delays across all flights.
+```
+SELECT f.flight_no, 
+       SUM(b.total_amount) AS total_booking_amount, 
+       (TIMESTAMPDIFF(MINUTE, f.scheduled_departure, f.actual_departure)) AS delay_minutes 
+FROM Flights f 
+JOIN Ticket_flights tf ON f.flight_id = tf.flight_id 
+JOIN Tickets t ON tf.ticket_no = t.ticket_no 
+JOIN Bookings b ON t.book_ref = b.book_ref 
+WHERE f.actual_departure IS NOT NULL 
+GROUP BY f.flight_no, f.scheduled_departure, f.actual_departure 
+HAVING delay_minutes IS NOT NULL
+order by delay_minutes desc
+LIMIT 0, 50000;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20111006.png)
+
+12) Passenger Behavior Analysis.
+```
+WITH PassengerStats AS (
+    SELECT 
+        t.passenger_id,
+        COUNT(t.ticket_no) AS booking_count,
+        SUM(tf.amount) AS total_spent,
+        AVG(tf.amount) AS avg_ticket_price
+    FROM 
+        Tickets t
+    JOIN 
+        Ticket_flights tf ON t.ticket_no = tf.ticket_no
+    GROUP BY 
+        t.passenger_id
+)
+SELECT 
+    passenger_id,
+    booking_count,
+    total_spent,
+    avg_ticket_price,
+    dense_rank() OVER (ORDER BY total_spent DESC) AS spending_rank
+FROM 
+    PassengerStats
+ORDER BY 
+    spending_rank;
+```
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20152222.png)
+
+13) A stored procedure to dynamically adjust ticket prices based on real-time demand and seat availability.
+```
+DELIMITER //
+CREATE PROCEDURE AdjustTicketPrices(IN flightId INT)
+BEGIN
+    DECLARE totalSeats INT;
+    DECLARE bookedSeats INT;
+    DECLARE occupancyRate DECIMAL(5,2);
+    
+    SELECT COUNT(*) INTO totalSeats 
+    FROM Seats 
+    WHERE Aircraft_code = (SELECT aircraft_code FROM Flights WHERE flight_id = flightId);
+    
+    SELECT COUNT(*) INTO bookedSeats 
+    FROM Boarding_passes 
+    WHERE flight_id = flightId;
+
+    SET occupancyRate = (bookedSeats / totalSeats) * 100;
+
+    IF occupancyRate > 80 THEN
+        UPDATE Ticket_flights 
+        SET fare_conditions = 'High Demand' 
+        WHERE flight_id = flightId;
+    ELSEIF occupancyRate < 50 THEN
+        UPDATE Ticket_flights 
+        SET fare_conditions = 'Discount' 
+        WHERE flight_id = flightId;
+    END IF;
+END //
+DELIMITER ;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
