@@ -26,6 +26,7 @@ The database consists of eight interconnected tables, each holding vital informa
 7) Ticket_flights: Connects tickets to flights, detailing fare conditions and amounts charged for each ticket.
 
 8) Tickets: Contains information about each ticket, linking ticket numbers to booking references and passenger IDs.
+![Alt text](URL-to-your-image)
 
 ## Analysis Goals
 1) Flight Performance Analysis:
