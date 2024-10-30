@@ -5,7 +5,7 @@ The primary objective of this project is to analyze various aspects of airline o
 ## Table of Contents
 - [Data Overview](#DataOverview)
 - [Analysis Goals](#AnalysisGoals)
-- [Contributing](#contributing)
+- [Methodology](#Methodology)
 - [License](#license)
 
 ## Data Overview
@@ -26,7 +26,9 @@ The database consists of eight interconnected tables, each holding vital informa
 7) Ticket_flights: Connects tickets to flights, detailing fare conditions and amounts charged for each ticket.
 
 8) Tickets: Contains information about each ticket, linking ticket numbers to booking references and passenger IDs.
-![Alt text](URL-to-your-image](https://github.com/Slndora/Aviation-Analytics/blob/main/Screenshot%202024-10-28%20122218.png)
+
+
+![Alt text](https://github.com/Slndora/Aviation-Analytics/blob/main/Screenshot%202024-10-28%20122218.png)
 
 ## Analysis Goals
 1) Flight Performance Analysis:
@@ -44,3 +46,16 @@ The database consists of eight interconnected tables, each holding vital informa
 5) Airport Performance:
 - Analyze flight traffic at various airports to determine busy and underutilized locations.
 - Explore the relationship between airport characteristics (such as timezone and geographical location) and flight performance.
+
+## Methodology
+- Data Cleaning & Preparation: Ensure data integrity and consistency across all tables.
+- Descriptive Analysis: Generate summary statistics and visualizations to identify trends.
+- Inferential Analysis: Apply statistical methods to test hypotheses and draw conclusions.
+- Data Visualization: Utilize tools like Power BI to create interactive dashboards.
+
+ 
+## Technologies Used
+- For the development and management of the relational database, SQL (Structured Query Language) was utilized for data manipulation, querying, and maintaining the integrity of the database. SQL enabled efficient retrieval and management of data across multiple tables, facilitating complex queries to derive meaningful insights from the data set.
+
+- In addition, Power BI was employed as a powerful business analytics tool to visualize and analyze the data. With Power BI, data from the relational database can be transformed into interactive reports and dashboards, allowing for real-time insights into various metrics related to flights, bookings, and aircraft.
+- This combination of SQL for data management and Power BI for visualization provides a robust framework for effective data analysis and decision-making.
