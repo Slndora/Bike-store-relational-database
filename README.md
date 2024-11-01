@@ -472,6 +472,35 @@ DELIMITER ;
 - Automation and Efficiency: Automates the pricing adjustment process, reducing the need for manual intervention and enabling real-time decision-making.
 
 
+## Measures in Power BI
+I successfully imported data from a relational database using MySQL Workbench into Power BI. Following the import, I developed several measures to enhance data analysis and visualization capabilities. These measures were designed to provide key insights and facilitate informed decision-making based on the underlying data.
+The integration process involved establishing relationships between various data tables to ensure accurate data modeling. I utilized DAX (Data Analysis Expressions) to create custom calculations, enabling dynamic reporting and in-depth analysis.The resulting Power BI dashboards offer a comprehensive view of the data, empowering with actionable insights and fostering a data-driven culture within the organization.
+
+```
+Total Bookings = COUNTROWS(bookings)
+
+Flight Delays = COUNTROWS(FILTER(flights, flights[actual_departure] > flights[scheduled_departure]))
+
+Total Seats Available = COUNTROWS(seats)
+
+Average Booking Amount = AVERAGE(bookings[total_amount])
+
+Seat Utilization Rate =  DIVIDE(
+                              COUNTROWS(tickets),
+                                  COUNTROWS(seats))
+                                                            
+Total flights operated = DISTINCTCOUNT(flights[flight_id])
+
+Average Fare per Ticket = AVERAGE(ticket_flights[amount])
+
+Total passengers = DISTINCTCOUNT(ticket_flights[ticket_no])
+
+Total Revenue by Route = SUMX(ticket_flights,ticket_flights[amount])
+```
+
+## Dashboard
+
+![alt text](
 
 
 
