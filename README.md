@@ -3,10 +3,18 @@
 ## Objective
 The primary objective of this project is to analyze various aspects of airline operations using the provided relational database. This analysis aims to uncover insights regarding aircraft performance, flight schedules, passenger bookings, and revenue generation.
 ## Table of Contents
-- [Data Overview](#DataOverview)
-- [Analysis Goals](#AnalysisGoals)
-- [Methodology](#Methodology)
-- [License](#license)
+- [Data Overview](#data-overview)
+- [Analysis Goals](#analysis-goals)
+- [Methodology](#methodology)
+- [Technologies Used](#technologies-used)
+- [Importing the data](#importing-the-data)
+- [Data Cleaning](#data-cleaning)
+- [Data Manipulation](#data-manipulation)
+- [SQL for Data Insights](#sQL-for-data-insights)
+- [Insights Generated with SQL Queries](#insights-generated-with-sQL-queries)
+- [Measures in Power BI](#measures-in-power-bI)
+- [Dashboard](#dashboard)
+
 
 ## Data Overview
 The database consists of eight interconnected tables, each holding vital information about the airline's operations. Here’s a brief overview of each table:
@@ -127,7 +135,7 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 ```
-## Data cleaning
+## Data Cleaning
 The data cleaning process involved several essential steps to ensure data integrity and usability. Duplicate entries were removed, missing values were addressed, and data types were corrected for accurate representation. Formats were standardized for consistency, outliers were treated as necessary, and overall data integrity was validated. I am pleased to report that there are no significant issues with the data, aside from the missing values in flights table, which have been effectively managed.
 ```
 delete from flights
@@ -142,7 +150,7 @@ aircraft_code is null or
 actual_departure is null or
 actual_arrival is null;
 ```
-## Data manipulation
+## Data Manipulation
 I updated columns across two distinct tables, transitioning their data types from text to date (Date and time). This change enhances data integrity and optimizes query performance by ensuring that the columns are now better suited for time-series analysis and event tracking. The adjustment not only improves data consistency but also facilitates more efficient data retrieval and processing, aligning with best practices in database management.
 ```
 UPDATE flights
@@ -365,7 +373,7 @@ END //
 DELIMITER ;
 ```
 
-## Insights generated with SQL Queries
+## Insights Generated with SQL Queries
 
 ### 1) Number of seats available per aircraft model
 - Capacity Planning: Airlines can determine how many passengers they can accommodate on specific routes based on aircraft capacity.
@@ -500,7 +508,7 @@ Total Revenue by Route = SUMX(ticket_flights,ticket_flights[amount])
 
 ## Dashboard
 
-![alt text](
+![alt text](https://github.com/Slndora/Aviation-Analytics/blob/aaf354f19233cc428fd129b50b6d107a9a2049c2/Screenshot%202024-11-01%20161109.png)
 
 
 
