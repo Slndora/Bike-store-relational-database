@@ -518,10 +518,5 @@ This project uses the [Airlines Dataset](https://www.kaggle.com/datasets/saadhar
 
 
 
-body {
-    background-image: url('https://github.com/Slndora/Aviation-Analytics/blob/aaf354f19233cc428fd129b50b6d107a9a2049c2/Screenshot%202024-11-01%20161109.png');
-    background-size: cover; /* Adjust as needed */
-    background-position: center;
-    background-repeat: no-repeat;
-}
+
 
