@@ -160,7 +160,7 @@ set book_date = str_to_date(book_date, '%Y-%m-%d %H:%i:%s+03');
 ```
 ## SQL for Data Insights
 
-1) Number of seats available per aircraft model
+### 1) Number of seats available per aircraft model
 ```
 SELECT AD.model, COUNT(S.seat_no) AS available_seats 
 FROM Aircrafts_data AD 
@@ -170,7 +170,7 @@ ORDER BY available_seats DESC ;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-26%20225959.png)
 
-2) List of the top 10 flights ranked by total tickets sold.
+### 2) List of the top 10 flights ranked by total tickets sold.
 ```
 SELECT F.flight_id, COUNT(T.ticket_no) AS total_tickets 
 FROM Flights F 
@@ -182,7 +182,7 @@ limit 10 ;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-26%20230828.png)
 
-3) List of top 20 flights ranked by income generated.
+### 3) List of top 20 flights ranked by income generated.
 ```
 SELECT F.flight_id, F.flight_no, SUM(TF.amount) AS total_income 
 FROM Flights F 
@@ -195,7 +195,7 @@ limit 20;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-26%20231238.png)
 
-4)  Analyze booking trends by month and calculate the average ticket price for each month across all bookings.
+### 4)  Analyze booking trends by month and calculate the average ticket price for each month across all bookings.
 ```
 SELECT DATE_FORMAT(b.book_date, '%Y-%m') AS booking_month, 
        COUNT(t.Ticket_no) AS total_tickets, 
@@ -208,7 +208,7 @@ ORDER BY booking_month;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20103915.png)
 
-5) Generate a report of passengers ranked by the total amounts spent and the number of flights taken.
+### 5) Generate a report of passengers ranked by the total amounts spent and the number of flights taken.
 ```
 SELECT t.passenger_id, 
        COUNT(DISTINCT tf.flight_id) AS flights_taken, 
@@ -220,7 +220,7 @@ ORDER BY total_spent DESC;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20104418.png)
 
-6) Identify the most popular routes based on the number of flights and total tickets sold for each route.
+### 6) Identify the most popular routes based on the number of flights and total tickets sold for each route.
 ```
 SELECT f.departure_airport, f.arrival_airport, 
        COUNT(f.Flight_id) AS total_flights, 
@@ -232,7 +232,7 @@ ORDER BY total_tickets DESC;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20104447.png)
 
-7) Analyze the relationship between aircraft range and ticket sales to see if longer-range flights yield more sales.
+### 7) Analyze the relationship between aircraft range and ticket sales to see if longer-range flights yield more sales.
 ```
 SELECT ad.range, COUNT(tf.Ticket_no) AS total_sales, AVG(tf.amount) AS avg_ticket_price 
 FROM Aircrafts_data ad 
@@ -243,7 +243,7 @@ ORDER BY ad.range;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20104530.png)
 
-8) Assess the impact of booking date on ticket sales, comparing early versus last-minute bookings.
+### 8) Assess the impact of booking date on ticket sales, comparing early versus last-minute bookings.
 ```
 SELECT CASE 
            WHEN DATEDIFF(f.scheduled_departure, b.book_date) > 30 THEN 'Early' 
@@ -259,7 +259,7 @@ GROUP BY booking_type;
 ```
 ![alt texxt](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20105149.png)
 
-9) Investigate flight delays by correlating scheduled and actual departure times, along with the number of affected passengers.
+### 9) Investigate flight delays by correlating scheduled and actual departure times, along with the number of affected passengers.
 ```
 SELECT f.flight_no, 
        COUNT(bp.boarding_no) AS affected_passengers, 
@@ -272,7 +272,7 @@ ORDER BY affected_passengers DESC;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20105827.png)
 
-10) Generate a comprehensive report analyzing the performance of each airport based on bookings, flights, ranked by revenue.
+### 10) Generate a comprehensive report analyzing the performance of each airport based on bookings, flights, ranked by revenue.
 ```
 SELECT a.airport_name, 
        COUNT(DISTINCT f.flight_id) AS total_flights, 
@@ -288,7 +288,7 @@ ORDER BY total_revenue DESC;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20110237.png)
 
-11) Investigate the correlation between booking amounts and flight delays across all flights.
+### 11) Investigate the correlation between booking amounts and flight delays across all flights.
 ```
 SELECT f.flight_no, 
        SUM(b.total_amount) AS total_booking_amount, 
@@ -305,7 +305,7 @@ LIMIT 0, 50000;
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20111006.png)
 
-12) Passenger Behavior Analysis.
+### 12) Passenger Behavior Analysis.
 ```
 WITH PassengerStats AS (
     SELECT 
@@ -333,7 +333,7 @@ ORDER BY
 ```
 ![alt text](https://github.com/Slndora/Aviation-Analytics/blob/19ae7cf9165416778eff4f09de1ea203252650fe/Screenshot%202024-10-27%20152222.png)
 
-13) A stored procedure to dynamically adjust ticket prices based on real-time demand and seat availability.
+### 13) A stored procedure to dynamically adjust ticket prices based on real-time demand and seat availability.
 ```
 DELIMITER //
 CREATE PROCEDURE AdjustTicketPrices(IN flightId INT)
@@ -365,12 +365,78 @@ END //
 DELIMITER ;
 ```
 
+## Insights generated with SQL Queries
 
+### 1) Number of seats available per aircraft model
+- Capacity Planning: Airlines can determine how many passengers they can accommodate on specific routes based on aircraft capacity.
+- Scheduling: Helps in scheduling flights by matching aircraft with expected passenger loads.
+- Fleet Management: Assists in making decisions about fleet composition and optimization.
+- Revenue Management: Aids in pricing strategies by understanding potential capacity and demand.
+- Operational Efficiency: Allows airlines to assess and optimize the utilization of their fleet.
 
+### 2) List of the top 10 flights ranked by total tickets sold.
+- Sales Performance Analysis: Identifies which flights are performing well, helping airlines understand market demand.
+- Revenue Management: Assists in optimizing pricing strategies based on high-demand flights.
+- Route Optimization: Provides insights into which routes might need additional capacity or more frequent service.
+- Marketing Strategies: Helps in targeting promotions and advertising efforts to boost sales on less popular flights.
+- Operational Planning: Informs decisions on staffing, aircraft allocation, and scheduling based on passenger demand.
+- Competitor Benchmarking: Allows airlines to compare their performance with competitors on specific routes.
 
+### 3) List of top 20 flights ranked by income generated.
+- Revenue Analysis: Helps airlines understand which flights are the most profitable, guiding financial decisions.
+- Resource Allocation: Informs decisions on where to allocate resources, such as aircraft and crew, based on profitability.
+- Pricing Strategies: Assists in developing dynamic pricing models by analyzing which flights yield the highest income.
+- Route Development: Identifies potential for expanding or increasing service on profitable routes.
+- Performance Benchmarking: Enables comparison of flight performance across different routes and seasons.
+- Financial Forecasting: Aids in projecting future income based on historical performance of the top flights.
 
+### 4)  Analyze booking trends by month and calculate the average ticket price for each month across all bookings.
+- Trend Analysis: Helps airlines understand seasonal variations in bookings, identifying peak travel times and slower months.
+- Pricing Strategy: Aids in setting competitive pricing by observing how average ticket prices fluctuate throughout the year.
+- Revenue Forecasting: Allows airlines to predict future revenue based on historical booking patterns and pricing trends.
+- Marketing Campaigns: Informs targeted marketing strategies during peak times or slower months to boost sales.
+- Capacity Planning: Helps in adjusting flight schedules and capacities according to expected demand based on monthly trends.
+- Customer Insights: Provides insights into customer behavior and preferences, potentially leading to improved service offerings.
 
+### 5) Generate a report of passengers ranked by the total amounts spent and the number of flights taken.
+- Customer Segmentation: Identifies high-value customers, allowing for targeted marketing and personalized offers.
+- Loyalty Programs: Helps in designing or enhancing loyalty programs based on passenger spending and travel frequency.
+- Revenue Optimization: Assists in understanding which customers contribute most to revenue, guiding pricing strategies.
+- Service Improvement: Provides insights into frequent travelers' preferences, enabling airlines to enhance services and amenities.
+- Performance Tracking: Allows airlines to monitor passenger spending trends over time, assessing the effectiveness of marketing campaigns.
+- Business Strategy: Informs broader business decisions, such as partnerships, promotions, or changes to service offerings.
 
+### 6) Identify the most popular routes based on the number of flights and total tickets sold for each route.
+- Route Performance Analysis: Helps airlines assess which routes are most in demand, guiding operational decisions.
+- Capacity Management: Informs decisions on whether to increase or decrease flight frequency on specific routes.
+- Market Demand Understanding: Provides insights into customer preferences and travel patterns.
+- Revenue Optimization: Aids in identifying routes that generate the most revenue, which can influence pricing strategies.
+- Strategic Planning: Assists in evaluating potential new routes or expanding existing ones based on proven demand.
+- Competitor Benchmarking: Allows for comparison of route performance against competitors, informing competitive strategies.
+
+### 7) Analyze the relationship between aircraft range and ticket sales to see if longer-range flights yield more sales.
+- Market Insights: Helps airlines understand if longer-range flights attract more customers, which can inform route planning.
+- Capacity and Fleet Planning: Informs decisions about acquiring new aircraft or adjusting routes based on performance related to range.
+- Revenue Management: Assists in evaluating whether to focus on long-haul versus short-haul routes based on ticket sales performance.
+- Pricing Strategy: Provides insights into how range affects pricing strategies and ticket sales, allowing for optimized pricing models.
+- Customer Preferences: Helps identify customer preferences for longer versus shorter flights, potentially guiding marketing efforts.
+- Operational Efficiency: Can inform operational decisions about scheduling and resource allocation based on performance data.
+
+### 8) Assess the impact of booking date on ticket sales, comparing early versus last-minute bookings.
+- Pricing Strategy: Helps airlines understand how booking timing affects sales, informing dynamic pricing strategies.
+- Revenue Forecasting: Provides insights into potential revenue based on booking patterns, aiding in financial planning.
+- Marketing Campaigns: Informs targeted marketing efforts to encourage early bookings or last-minute deals.
+- Capacity Management: Assists in planning flight capacities and adjusting schedules based on expected booking behavior.
+- Customer Behavior Analysis: Reveals patterns in customer booking preferences, which can guide service offerings and promotions.
+- Operational Efficiency: Helps airlines optimize operations by understanding demand fluctuations based on booking timing.
+
+### 9) Investigate flight delays by correlating scheduled and actual departure times, along with the number of affected passengers.
+- Operational Efficiency: Identifies patterns in delays, helping airlines improve scheduling and reduce future delays.
+- Customer Service Improvement: Assists in understanding the impact of delays on passengers, guiding better communication and service recovery strategies.
+- Performance Metrics: Provides key performance indicators for on-time performance, which can be used for reporting and benchmarking.
+- Resource Allocation: Helps in optimizing gate assignments and crew scheduling based on delay patterns.
+- Regulatory Compliance: Aids in ensuring compliance with industry regulations regarding delays and passenger rights.
+- Strategic Planning: Informs decisions on route adjustments or operational changes to minimize delays in the future.
 
 
 
