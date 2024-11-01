@@ -438,16 +438,38 @@ DELIMITER ;
 - Regulatory Compliance: Aids in ensuring compliance with industry regulations regarding delays and passenger rights.
 - Strategic Planning: Informs decisions on route adjustments or operational changes to minimize delays in the future.
 
+### 10) Generate a comprehensive report analyzing the performance of each airport based on bookings, flights, ranked by revenue.
+- Airport Performance Evaluation: Allows airlines and airport authorities to assess which airports generate the most revenue and have the highest booking volumes.
+- Resource Allocation: Informs decisions on where to allocate marketing resources, flight frequency, and operational support based on performance.
+- Strategic Planning: Aids in identifying opportunities for route expansion or enhancement at underperforming airports.
+- Revenue Management: Provides insights into how different airports contribute to overall revenue, assisting in pricing and promotional strategies.
+- Competitor Analysis: Helps compare airport performance against competitors, informing strategic decisions.
+- Customer Insights: Reveals trends in passenger preferences and behaviors at different airports, guiding service improvements.
 
+### 11) Investigate the correlation between booking amounts and flight delays across all flights.
+- Understanding Customer Impact: Helps identify how booking levels may influence or relate to delays, providing insights into customer experience.
+- Operational Insights: Reveals whether higher passenger loads contribute to increased delays, aiding in resource and capacity planning.
+- Performance Monitoring: Assists in tracking how operational efficiency changes with varying booking amounts, enabling better management.
+- Strategic Decision-Making: Informs decisions on scheduling, such as whether to increase capacity on busy flights to mitigate delays.
+- Revenue Implications: Provides insights into how booking trends and delays might impact overall revenue, informing pricing and marketing strategies.
+- Customer Communication: Enables airlines to better communicate potential delays based on booking trends, improving customer service.
 
+### 12) Passenger Behavior Analysis.
+- Customer Segmentation: It helps identify high-value customers based on total spending, enabling targeted marketing efforts and personalized offers.
+- Loyalty Program Design: Insights from booking frequency and spending can inform the development or enhancement of loyalty programs to reward frequent travelers.
+- Revenue Management: Understanding which passengers contribute the most to revenue allows airlines to optimize pricing strategies and promotional activities.
+- Behavioral Insights: Analyzing booking counts and average ticket prices provides insights into passenger preferences and travel patterns.
+- Performance Monitoring: Enables airlines to track changes in passenger spending and booking behaviors over time, assessing the effectiveness of marketing initiatives.
+- Resource Allocation: Helps in deciding where to focus customer service resources, based on the value of different passenger segments.
 
-
-
-
-
-
-
-
+### 13) A stored procedure to dynamically adjust ticket prices based on real-time demand and seat availability.
+- Revenue Optimization: Allows airlines to maximize revenue by adjusting prices in response to demand fluctuations, ensuring they capture the highest possible fares.
+- Demand Responsiveness: Ensures that pricing reflects current market conditions, which can help fill seats on flights that are in high demand or offer discounts on less popular routes.
+- Dynamic Pricing Strategy: Facilitates a dynamic pricing model, where prices can change frequently based on various factors like booking pace, time to departure, and remaining seat availability.
+- Competitive Edge: Helps airlines remain competitive in the marketplace by responding quickly to competitor pricing and market trends.
+- Improved Load Factor: By adjusting prices based on demand, airlines can increase the load factor (the percentage of available seating capacity that is filled with passengers), leading to better overall profitability.
+- Customer Insights: Provides data on how changes in price affect booking behavior, helping refine future pricing strategies.
+- Automation and Efficiency: Automates the pricing adjustment process, reducing the need for manual intervention and enabling real-time decision-making.
 
 
 
